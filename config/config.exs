@@ -36,7 +36,8 @@ config :spark,
 
 config :muhurta,
   ecto_repos: [Muhurta.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [Muhurta.Events]
 
 # Configures the endpoint
 config :muhurta, MuhurtaWeb.Endpoint,
