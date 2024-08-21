@@ -6,14 +6,14 @@
       </a>
     </div>
     <div class="flex items-center gap-4 leading-6 text-zinc-900">
-      <%!-- <%= if @current_user do %>
+      <%= if @current_user do %>
         <p>
           Welcome <%= @current_user.name %>
         </p>
         <.link href={~p"/?logout=true"} class="hover:text-zinc-700">
           Logout
         </.link>
-      <% end %> --%>
+      <% end %>
     </div>
   </div>
 </header>
