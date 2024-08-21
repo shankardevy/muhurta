@@ -6,10 +6,11 @@ defmodule MuhurtaWeb.EventComponents do
   """
 
   attr :poll, :map, required: true
+  attr :class, :string, default: "px-8 py-4 bg-white rounded-lg shadow-md"
 
   def poll_card(assigns) do
     ~H"""
-    <div class="px-8 py-4 bg-white rounded-lg shadow-md">
+    <div class={@class}>
       <div class="flex items-center justify-between">
         <span class="text-sm font-light text-gray-600"><%= @poll.location %></span>
       </div>
