@@ -14,10 +14,10 @@ defmodule MuhurtaWeb.CoreComponents do
 
   Icons are provided by [heroicons](https://heroicons.com). See `icon/1` for usage.
   """
+  use Gettext, backend: MuhurtaWeb.Gettext
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import MuhurtaWeb.Gettext
 
   @doc """
   Renders a modal.
