@@ -23,6 +23,8 @@ defmodule MuhurtaWeb.Router do
   # Use this scope for paths that require authentication
   scope "/", MuhurtaWeb do
     pipe_through [:browser, :require_authentication]
+
+    live "/polls", PollLive.Index
   end
 
   # Following are custom plugs to implement a simple authentication check
