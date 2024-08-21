@@ -10,7 +10,7 @@ defmodule MuhurtaWeb.EventComponents do
 
   def poll_card(assigns) do
     ~H"""
-    <div class={@class}>
+    <div class={@class} id={@id}>
       <div class="flex items-center justify-between">
         <span class="text-sm font-light text-gray-600"><%= @poll.location %></span>
       </div>
