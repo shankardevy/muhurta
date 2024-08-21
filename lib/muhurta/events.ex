@@ -12,7 +12,7 @@ defmodule Muhurta.Events do
       define :create_poll, action: :create
       define :update_poll, action: :update
       define :delete_poll, action: :destroy
-      define :list_poll, action: :read
+      define :list_polls, action: :read
       define :get_poll, action: :read, get?: true
     end
 
