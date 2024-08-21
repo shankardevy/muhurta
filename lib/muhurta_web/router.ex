@@ -25,6 +25,7 @@ defmodule MuhurtaWeb.Router do
     pipe_through [:browser, :require_authentication]
 
     live "/polls", PollLive.Index
+    live "/me", ProfileLive.Show
   end
 
   # Following are custom plugs to implement a simple authentication check
