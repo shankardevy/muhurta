@@ -3,5 +3,5 @@
 </h1>
 
 <div class="grid grid-cols-2 gap-4">
-  <.poll_card />
+  <.poll_card :for={poll <- @polls} poll={poll} />
 </div>
