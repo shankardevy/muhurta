@@ -1,11 +1,11 @@
 <div class="flex p-3 bg-slate-200 gap-4">
   <div>
-    <span class="font-bold">PID</span> 2.3.3
+    <%= inspect(@pid) %>
   </div>
   <div>
-    <span class="font-bold">Memory</span> 40 KB
+    <span class="font-bold">Memory</span> <%= @memory %> KB
   </div>
   <div>
-    <span class="font-bold">Status</span> Active
+    <span class="font-bold">Status</span> <%= @status %>
   </div>
 </div>

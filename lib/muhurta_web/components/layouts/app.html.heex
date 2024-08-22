@@ -6,6 +6,13 @@
       </a>
     </div>
     <div class="flex items-center gap-4 leading-6 text-zinc-900">
+      <%= if assigns[:socket] do %>
+        <%= live_render(@socket, MuhurtaWeb.ProcessLive.Show,
+          id: "process-info",
+          session: %{"pid" => @pid}
+        ) %>
+      <% end %>
+
       <%= if @current_user do %>
         <p>
           Welcome <%= @current_user.name %>
