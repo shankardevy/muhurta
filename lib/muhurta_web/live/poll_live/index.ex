@@ -13,7 +13,11 @@ defmodule MuhurtaWeb.PollLive.Index do
     polls = Events.list_polls!()
     user = Muhurta.Events.get_user!(user_id)
 
-    {:ok, assign(socket, polls: polls, current_user: user)}
+    {:ok, socket |> stream(:polls, polls) |> assign(:current_user, user)}
+  end
+
+  def handle_event(_event, _unsigned_params, socket) do
+    {:noreply, socket}
   end
 
   def handle_event("add_poll", _unsigned_params, socket) do

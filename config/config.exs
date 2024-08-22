@@ -48,7 +48,7 @@ config :muhurta, MuhurtaWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Muhurta.PubSub,
-  live_view: [signing_salt: "Xt1x83ws"]
+  live_view: [signing_salt: "Xt1x83ws", hibernate_after: 5000]
 
 # Configures the mailer
 #

@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 <div class="flex justify-between border-b border-gray-300 mb-6 pb-2">
   <h1 class="text-2xl font-semibold text-gray-800 md:text-3xl">
     Event Polls
   </h1>
   <.button phx-click="add_poll">New Poll</.button>
 </div>
+=======
+<h1 class="mb-6 pb-2 text-2xl font-semibold text-gray-800 md:text-3xl border-b border-gray-300">
+  Event Polls
+</h1>
+<button phx-click="wakeup">Wakeup</button>
+>>>>>>> 4871fcc (WIP)
 
 <div class="grid grid-cols-2 gap-4">
-  <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
+  <.poll_card :for={{id, poll} <- @streams.polls} poll={poll} id={id}>
     <:location>
       <span><%= poll.location %></span>
     </:location>
