@@ -7,6 +7,9 @@ defmodule MuhurtaWeb.PollLive.Show do
     user = Events.get_user!(user_id)
 
     poll = Events.get_poll!(id)
+    polls = Events.list_polls!()
+
+    socket = stream(socket, :polls, polls)
 
     {:ok, assign(socket, poll: poll, current_user: user)}
   end
