@@ -3,5 +3,7 @@
 </h1>
 
 <div class="grid grid-cols-2 gap-4">
-  <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"} />
+  <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
+    <p class="mt-2 text-gray-600"><%= poll.description %></p>
+  </.poll_card>
 </div>
