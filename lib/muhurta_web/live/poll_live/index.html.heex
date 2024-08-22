@@ -11,7 +11,10 @@
       <span><%= poll.location %></span>
     </:location>
     <:name>
-      <a href="#" class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline">
+      <a
+        href={"/polls/#{poll.id}"}
+        class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline"
+      >
         <%= poll.name %>
       </a>
     </:name>

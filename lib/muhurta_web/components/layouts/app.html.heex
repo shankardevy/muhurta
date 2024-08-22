@@ -1,22 +1,14 @@
 <header class="px-4 sm:px-6 lg:px-8 shadow-sm">
   <div class="mx-auto max-w-4xl flex items-center justify-between border-b border-zinc-100 text-sm">
-    <div class="py-3 flex items-center gap-4 font-semibold">
-      <a href="/">
+    <div class="py-3 flex items-center gap-4 ">
+      <a href="/" class="font-semibold">
         Muhurta
       </a>
+      <a href="/polls" class="ml-10">Polls</a>
     </div>
     <div class="flex items-center gap-4 leading-6 text-zinc-900">
-      <%= if assigns[:socket] do %>
-        <%= live_render(@socket, MuhurtaWeb.ProcessLive.Show,
-          id: "process-info",
-          session: %{"pid" => @pid}
-        ) %>
-      <% end %>
-
       <%= if @current_user do %>
-        <p>
-          Welcome <%= @current_user.name %>
-        </p>
+        <a href="/me">Welcome <%= @current_user.name %></a>
         <.link href={~p"/?logout=true"} class="hover:text-zinc-700">
           Logout
         </.link>

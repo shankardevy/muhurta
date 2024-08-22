@@ -6,13 +6,12 @@ defmodule MuhurtaWeb.PollLive.Index do
   import MuhurtaWeb.EventComponents
 
   def mount(_params, %{"user_id" => user_id} = _session, socket) do
-    pid = self()
     polls = Events.list_polls!()
     user = Muhurta.Events.get_user!(user_id)
 
     socket = stream(socket, :polls, polls)
 
-    {:ok, assign(socket, current_user: user, pid: pid)}
+    {:ok, assign(socket, current_user: user)}
   end
 
   def handle_event("add_poll", _unsigned_params, socket) do
