@@ -13,7 +13,7 @@ defmodule Muhurta.Events do
       define :update_poll, action: :update
       define :delete_poll, action: :destroy
       define :list_polls, action: :read
-      define :get_poll, action: :read, get?: true
+      define :get_poll, action: :read, get?: true, get_by: :id
     end
 
     resource Muhurta.Events.PollOption

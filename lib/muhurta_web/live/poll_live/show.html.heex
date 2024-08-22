@@ -1,0 +1,132 @@
+<div class="grid grid-cols-12 gap-8">
+  <!-- Left Section: Event Details and Votes -->
+  <div class="col-span-8">
+    <!-- Event Details -->
+    <div class="mb-8">
+      <h1 class="text-2xl font-semibold text-gray-800 md:text-3xl">Event Title</h1>
+      <p class="text-sm text-gray-500 mt-2">Location: Conference Room 1</p>
+      <p class="mt-4 text-gray-700">
+        Event Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.
+      </p>
+    </div>
+    <!-- Votes for Each Suggested Time -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="border rounded-lg p-4">
+        <h3 class="text-gray-800">
+          August 25, 2024
+        </h3>
+        <p class="text-sm  border-b pb-1 mb-4">10:00 AM to 12:00 PM</p>
+        <div class="mt-2">
+          <h3 class="text-md text-green-600">Yes:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>John Doe</li>
+            <li>Jane Smith</li>
+          </ul>
+        </div>
+        <div class="mt-2">
+          <h3 class="text-md text-red-600">No:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>Mark Lee</li>
+          </ul>
+        </div>
+
+        <div class="mt-2">
+          <h3 class="text-md text-yellow-600">If need be:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>Sarah Connor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border rounded-lg p-4">
+        <h3 class="text-gray-800">August 26, 2024</h3>
+        <p class="text-sm border-b pb-1 mb-4">2:00 PM to 4:00 PM</p>
+        <div class="mt-2">
+          <h3 class="text-md text-green-600">Yes:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>John Doe</li>
+          </ul>
+        </div>
+        <div class="mt-2">
+          <h3 class="text-md text-red-600">No:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>Jane Smith</li>
+          </ul>
+        </div>
+        <div class="mt-2">
+          <h3 class="text-md text-yellow-600">If need be:</h3>
+          <ul class="list-disc ml-6 text-gray-700">
+            <li>Mark Lee</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Right Section: Voting for Suggested Times -->
+  <div class="col-span-4 shadow-md rounded-lg p-6 space-y-6">
+    <!-- Suggested Time 1 -->
+    <h2 class="text-gray-800">Suggested Time Slots</h2>
+
+    <div class="p-4">
+      <h3 class="text-gray-800">August 25, 2024</h3>
+      <p class="text-sm text-gray-600">10:00 AM - 12:00 PM</p>
+      <!-- Radio Buttons -->
+      <div class="mt-4 flex flex-col">
+        <label class="block items-center">
+          <input
+            type="radio"
+            name="suggested_time_1"
+            value="yes"
+            class="form-radio text-blue-500"
+          />
+          <span class="ml-2">Yes</span>
+        </label>
+        <label class="block items-center">
+          <input type="radio" name="suggested_time_1" value="no" class="form-radio text-red-500" />
+          <span class="ml-2">No</span>
+        </label>
+        <label class="block items-center">
+          <input
+            type="radio"
+            name="suggested_time_1"
+            value="if_need_be"
+            class="form-radio text-yellow-500"
+          />
+          <span class="ml-2">If need be</span>
+        </label>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="p-4">
+      <h3 class="text-gray-800">August 25, 2024</h3>
+      <p class="text-sm text-gray-600">10:00 AM - 12:00 PM</p>
+      <!-- Radio Buttons -->
+      <div class="mt-4 flex flex-col">
+        <label class="block items-center">
+          <input
+            type="radio"
+            name="suggested_time_1"
+            value="yes"
+            class="form-radio text-blue-500"
+          />
+          <span class="ml-2">Yes</span>
+        </label>
+        <label class="block items-center">
+          <input type="radio" name="suggested_time_1" value="no" class="form-radio text-red-500" />
+          <span class="ml-2">No</span>
+        </label>
+        <label class="block items-center">
+          <input
+            type="radio"
+            name="suggested_time_1"
+            value="if_need_be"
+            class="form-radio text-yellow-500"
+          />
+          <span class="ml-2">If need be</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
