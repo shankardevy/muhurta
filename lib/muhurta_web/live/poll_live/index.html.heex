@@ -5,8 +5,8 @@
   <.button phx-click="add_poll">New Poll</.button>
 </div>
 
-<div class="grid grid-cols-2 gap-4">
-  <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
+<div class="grid grid-cols-2 gap-4" phx-update="stream" id="poll-list">
+  <.poll_card :for={{id, poll} <- @streams.polls} poll={poll} id={id}>
     <:location>
       <span><%= poll.location %></span>
     </:location>
