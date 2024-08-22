@@ -10,7 +10,8 @@ defmodule MuhurtaWeb.PollLive.TempAssigns do
     polls = Events.list_polls!()
     user = Muhurta.Events.get_user!(user_id)
 
-    {:ok, assign(socket, polls: polls, current_user: user, pid: pid)}
+    {:ok, assign(socket, polls: polls, current_user: user, pid: pid),
+     temporary_assigns: [polls: []]}
   end
 
   def handle_event("add_poll", _unsigned_params, socket) do
@@ -21,10 +22,8 @@ defmodule MuhurtaWeb.PollLive.TempAssigns do
         "Finding the best time to present our latest project deliverables to the client and gather their feedback."
     }
 
-    Events.create_poll!(poll_params, actor: socket.assigns.current_user)
+    poll = Events.create_poll!(poll_params, actor: socket.assigns.current_user)
 
-    polls = Events.list_polls!()
-
-    {:noreply, socket |> assign(polls: polls) |> put_flash(:info, "New Event created.")}
+    {:noreply, socket |> assign(polls: [poll]) |> put_flash(:info, "New Event created.")}
   end
 end
