@@ -1,1 +1,12 @@
-Form
+<div class="max-w-md mx-auto bg-white p-8 shadow-md rounded-md">
+  <h1 class="text-2xl font-bold mb-4">Create Event</h1>
+
+  <.simple_form for={@form} phx-submit="submit">
+    <.input field={@form[:name]} label="Event name" />
+    <.input field={@form[:location]} label="Location" />
+    <.input field={@form[:description]} label="Description" type="textarea" />
+    <:actions>
+      <.button>Save</.button>
+    </:actions>
+  </.simple_form>
+</div>
