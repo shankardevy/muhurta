@@ -1,0 +1,20 @@
+<div class="flex justify-between border-b border-gray-300 mb-6 pb-2">
+  <h1 class="text-2xl font-semibold text-gray-800 md:text-3xl">
+    Event Polls
+  </h1>
+  <.button phx-click="add_poll">New Poll</.button>
+</div>
+
+<div class="grid grid-cols-2 gap-4">
+  <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
+    <:location>
+      <span><%= poll.location %></span>
+    </:location>
+    <:name>
+      <a href="#" class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline">
+        <%= poll.name %>
+      </a>
+    </:name>
+    <p class="mt-2 text-gray-600"><%= poll.description %></p>
+  </.poll_card>
+</div>

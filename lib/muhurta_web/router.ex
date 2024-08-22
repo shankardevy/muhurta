@@ -26,6 +26,10 @@ defmodule MuhurtaWeb.Router do
 
     live "/polls", PollLive.Index
     live "/me", ProfileLive.Show
+
+    live "/performance/polls/assigns", PollLive.Assigns
+    live "/performance/polls/temp-assigns", PollLive.TempAssigns
+    live "/performance/polls/streams", PollLive.Streams
   end
 
   # Following are custom plugs to implement a simple authentication check
