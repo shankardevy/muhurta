@@ -8,9 +8,9 @@ defmodule MuhurtaWeb.Router do
     plug :put_root_layout, html: {MuhurtaWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :logout
     plug :set_session_user_id
     plug :fetch_current_actor
-    plug :logout
   end
 
   # Use this scope for paths that can be seen by anonmyous user
@@ -41,8 +41,12 @@ defmodule MuhurtaWeb.Router do
   """
   def set_session_user_id(conn, _) do
     with email when not is_nil(email) <- Map.get(conn.params, "email"),
-         {:ok, %{id: user_id}} <- Muhurta.Events.get_user_by_email(email) do
-      Plug.Conn.put_session(conn, "user_id", user_id)
+         {:ok, %{id: user_id, name: name}} <- Muhurta.Events.get_user_by_email(email) do
+      conn
+      |> put_session("user_id", user_id)
+      |> put_flash(:info, "Logged in as #{name}")
+      |> redirect(to: "/")
+      |> halt()
     else
       _ -> conn
     end
@@ -59,15 +63,25 @@ defmodule MuhurtaWeb.Router do
   - It then assigns this user to the `:current_user` and sets them as the "actor" (current user) for any further actions.
   """
   def fetch_current_actor(conn, _) do
-    user =
-      case get_session(conn, "user_id") do
-        nil -> nil
-        user_id -> Muhurta.Events.get_user!(user_id)
-      end
+    case get_session(conn, "user_id") do
+      nil ->
+        conn
+        |> assign(:current_user, nil)
 
-    conn
-    |> assign(:current_user, user)
-    |> Ash.PlugHelpers.set_actor(user)
+      user_id ->
+        case Muhurta.Events.get_user(user_id) do
+          {:ok, user} ->
+            conn
+            |> assign(:current_user, user)
+            |> Ash.PlugHelpers.set_actor(user)
+
+          _ ->
+            conn
+            |> put_flash(:error, "Invalid Session Details")
+            |> redirect(to: "/?logout=true")
+            |> halt()
+        end
+    end
   end
 
   @doc """
