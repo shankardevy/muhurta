@@ -1,6 +1,7 @@
 defmodule MuhurtaWeb.EventComponents do
   use Phoenix.Component
 
+  import MuhurtaWeb.CoreComponents, only: [icon: 1]
   embed_templates "events/*"
 
   @doc """
@@ -8,7 +9,7 @@ defmodule MuhurtaWeb.EventComponents do
   """
 
   attr :poll, :map, required: true
-  attr :rest, :global, default: %{class: "px-8 py-4 bg-white rounded-lg shadow-md"}
+  attr :rest, :global, default: %{class: "group px-8 py-4 bg-white rounded-lg shadow-md"}
 
   slot :inner_block
   slot :name

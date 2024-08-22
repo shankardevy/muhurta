@@ -1,6 +1,7 @@
 <div {@rest}>
   <div class="flex items-center justify-between">
     <%= render_slot(@location) %>
+    <button><.icon name="hero-trash" class="opacity-0 group-hover:opacity-100" /></button>
   </div>
   <div class="mt-2">
     <%= render_slot(@name) %>
