@@ -13,6 +13,12 @@ defmodule MuhurtaWeb.PollLive.Form do
     {:noreply, assign(socket, form: get_poll_form(params, socket.assigns.current_user))}
   end
 
+  def handle_event("validate", %{"form" => params}, socket) do
+    form = AshPhoenix.Form.validate(socket.assigns.form, params)
+
+    {:noreply, assign(socket, :form, form)}
+  end
+
   def handle_event("submit", %{"form" => params}, socket) do
     case AshPhoenix.Form.submit(socket.assigns.form,
            params: params
