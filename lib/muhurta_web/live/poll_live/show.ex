@@ -3,14 +3,19 @@ defmodule MuhurtaWeb.PollLive.Show do
 
   alias Muhurta.Events
 
-  def mount(%{"id" => id}, %{"user_id" => user_id} = _session, socket) do
+  def mount(_params, %{"user_id" => user_id} = _session, socket) do
     user = Events.get_user!(user_id)
 
-    poll = Events.get_poll!(id)
     polls = Events.list_polls!()
 
     socket = stream(socket, :polls, polls)
 
-    {:ok, assign(socket, poll: poll, current_user: user)}
+    {:ok, assign(socket, current_user: user)}
+  end
+
+  def handle_params(%{"id" => id}, _uri, socket) do
+    poll = Events.get_poll!(id)
+
+    {:noreply, assign(socket, :poll, poll)}
   end
 end

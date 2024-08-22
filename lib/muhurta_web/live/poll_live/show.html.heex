@@ -131,7 +131,7 @@
     <div phx-update="stream" id="polls">
       <ul>
         <li :for={{id, poll} <- @streams.polls}>
-          <.link navigate={~p"/polls/#{poll.id}"}>
+          <.link patch={~p"/polls/#{poll.id}"}>
             <%= poll.name %>
           </.link>
         </li>
