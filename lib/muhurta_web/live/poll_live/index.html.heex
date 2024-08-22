@@ -1,6 +1,9 @@
-<h1 class="mb-6 pb-2 text-2xl font-semibold text-gray-800 md:text-3xl border-b border-gray-300">
-  Event Polls
-</h1>
+<div class="flex justify-between border-b border-gray-300 mb-6 pb-2">
+  <h1 class="text-2xl font-semibold text-gray-800 md:text-3xl">
+    Event Polls
+  </h1>
+  <.button>New Poll</.button>
+</div>
 
 <div class="grid grid-cols-2 gap-4">
   <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
