@@ -7,6 +7,7 @@ defmodule MuhurtaWeb.EventComponents do
 
   attr :poll, :map, required: true
   attr :rest, :global, default: %{class: "px-8 py-4 bg-white rounded-lg shadow-md"}
+  slot :inner_block
 
   def poll_card(assigns) do
     ~H"""
@@ -18,7 +19,8 @@ defmodule MuhurtaWeb.EventComponents do
         <a href="#" class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline">
           <%= @poll.name %>
         </a>
-        <p class="mt-2 text-gray-600"><%= @poll.description %></p>
+
+        <%= render_slot(@inner_block) %>
       </div>
     </div>
     """
