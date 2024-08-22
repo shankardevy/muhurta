@@ -4,6 +4,14 @@
 
 <div class="grid grid-cols-2 gap-4">
   <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
+    <:location>
+      <span><%= poll.location %></span>
+    </:location>
+    <:name>
+      <a href="#" class="text-xl font-bold text-gray-700 hover:text-gray-600 hover:underline">
+        <%= poll.name %>
+      </a>
+    </:name>
     <p class="mt-2 text-gray-600"><%= poll.description %></p>
   </.poll_card>
 </div>
