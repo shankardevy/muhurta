@@ -28,4 +28,11 @@ defmodule MuhurtaWeb.PollLive.Index do
     {:noreply,
      socket |> stream_insert(:polls, poll, at: 0) |> put_flash(:info, "New Event created.")}
   end
+
+  def handle_event("delete", %{"id" => id}, socket) do
+    :ok = Muhurta.Events.delete_poll(id)
+
+    {:noreply,
+     stream_delete_by_dom_id(socket, :polls, "polls-#{id}") |> put_flash(:info, "Event deleted")}
+  end
 end
