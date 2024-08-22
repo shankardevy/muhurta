@@ -8,10 +8,13 @@ defmodule Muhurta.Events.Poll do
 
   actions do
     defaults [
-      :read,
       :destroy,
       update: [:name, :description, :location]
     ]
+
+    read :read do
+      prepare build(sort: [inserted_at: :desc])
+    end
 
     create :create do
       accept [:name, :description, :location]
