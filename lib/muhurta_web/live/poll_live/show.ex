@@ -11,7 +11,22 @@ defmodule MuhurtaWeb.PollLive.Show do
 
   def handle_params(%{"id" => id}, _uri, socket) do
     poll = Events.get_poll!(id)
-    IO.inspect(poll)
     {:noreply, assign(socket, :poll, poll)}
+  end
+
+  def handle_info({:user_vote, _vote}, socket) do
+    poll = Events.get_poll!(socket.assigns.poll.id)
+    {:noreply, assign(socket, :poll, poll)}
+  end
+
+  defp group_votes(votes) do
+    grouped = Enum.group_by(votes, & &1.answer)
+
+    # Define the order of groups
+    order = ["If Need Be", "No", "Yes"]
+
+    Enum.reduce(order, [], fn answer, acc ->
+      [{answer, Map.get(grouped, answer, [])}] ++ acc
+    end)
   end
 end

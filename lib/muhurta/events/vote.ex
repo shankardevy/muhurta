@@ -10,7 +10,8 @@ defmodule Muhurta.Events.Vote do
     defaults [
       :read,
       :destroy,
-      create: [:poll_option_id, :user_id, :answer]
+      create: [:poll_option_id, :user_id, :answer],
+      update: [:answer]
     ]
   end
 

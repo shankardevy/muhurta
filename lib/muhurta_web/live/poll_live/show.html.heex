@@ -21,25 +21,11 @@
             "%I:%M %p"
           ) %>
         </p>
-        <div :if={Enum.any?(poll_option.votes)}>
-          <div class="mt-2">
-            <h3 class="text-md text-green-600">Yes:</h3>
+        <div :if={Enum.any?(votes = poll_option.votes)}>
+          <div :for={{group, votes} <- group_votes(votes)} class="mt-2">
+            <h3 class="text-md text-green-600"><%= group %>:</h3>
             <ul class="list-disc ml-6 text-gray-700">
-              <li>John Doe</li>
-              <li>Jane Smith</li>
-            </ul>
-          </div>
-          <div class="mt-2">
-            <h3 class="text-md text-red-600">No:</h3>
-            <ul class="list-disc ml-6 text-gray-700">
-              <li>Mark Lee</li>
-            </ul>
-          </div>
-
-          <div class="mt-2">
-            <h3 class="text-md text-yellow-600">If need be:</h3>
-            <ul class="list-disc ml-6 text-gray-700">
-              <li>Sarah Connor</li>
+              <li :for={vote <- votes}><%= vote.user.name %></li>
             </ul>
           </div>
         </div>
@@ -51,7 +37,6 @@
   </div>
   <!-- Right Section: Voting for Suggested Times -->
   <div class="col-span-4 shadow-md rounded-lg p-6 space-y-6">
-    <!-- Suggested Time 1 -->
     <h2 class="text-gray-800">Vote on Suggested Timeslots</h2>
 
     <div :for={poll_option <- @poll.poll_options} class="p-4">
@@ -62,31 +47,13 @@
           "%I:%M %p"
         ) %>
       </p>
-      <!-- Radio Buttons -->
-      <div class="mt-4 flex flex-col">
-        <label class="block items-center">
-          <input
-            type="radio"
-            name="suggested_time_1"
-            value="yes"
-            class="form-radio text-blue-500"
-          />
-          <span class="ml-2">Yes</span>
-        </label>
-        <label class="block items-center">
-          <input type="radio" name="suggested_time_1" value="no" class="form-radio text-red-500" />
-          <span class="ml-2">No</span>
-        </label>
-        <label class="block items-center">
-          <input
-            type="radio"
-            name="suggested_time_1"
-            value="if_need_be"
-            class="form-radio text-yellow-500"
-          />
-          <span class="ml-2">If need be</span>
-        </label>
-      </div>
+      <.live_component
+        module={MuhurtaWeb.PollLive.Component.VoteForm}
+        poll_option={poll_option}
+        current_user={@current_user}
+        id={"poll-option-#{poll_option.id}"
+        }
+      />
     </div>
   </div>
 </div>
