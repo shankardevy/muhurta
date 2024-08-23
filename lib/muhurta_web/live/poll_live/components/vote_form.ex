@@ -56,9 +56,7 @@ defmodule MuhurtaWeb.PollLive.Component.VoteForm do
       {:ok, vote} ->
         send(self(), {:user_vote, vote})
 
-        {:noreply,
-         socket
-         |> put_flash(:info, "Vote created")}
+        {:noreply, socket}
 
       {:error, form} ->
         {:noreply, assign(socket, :form, form)}
