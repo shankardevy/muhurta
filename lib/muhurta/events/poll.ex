@@ -19,7 +19,13 @@ defmodule Muhurta.Events.Poll do
 
     create :create do
       accept [:name, :description, :location]
+      argument :poll_options, {:array, :map}
+
       change relate_actor(:creator)
+
+      change manage_relationship(:poll_options,
+               on_no_match: {:create, :create}
+             )
     end
   end
 

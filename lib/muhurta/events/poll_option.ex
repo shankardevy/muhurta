@@ -6,6 +6,19 @@ defmodule Muhurta.Events.PollOption do
     repo Muhurta.Repo
   end
 
+  actions do
+    defaults [:read, :destroy]
+
+    create :create do
+      primary? true
+      accept [:date, :from_time, :to_time, :poll_id]
+    end
+
+    update :update do
+      accept [:date, :from_time, :to_time]
+    end
+  end
+
   attributes do
     uuid_primary_key :id
 
