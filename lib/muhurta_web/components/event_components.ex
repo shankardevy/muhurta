@@ -1,6 +1,8 @@
 defmodule MuhurtaWeb.EventComponents do
   use Phoenix.Component
 
+  embed_templates "events/*"
+
   @doc """
   Renders an Event Poll
   """
@@ -12,18 +14,5 @@ defmodule MuhurtaWeb.EventComponents do
   slot :name
   slot :location
 
-  def poll_card(assigns) do
-    ~H"""
-    <div {@rest}>
-      <div class="flex items-center justify-between">
-        <%= render_slot(@location) %>
-      </div>
-      <div class="mt-2">
-        <%= render_slot(@name) %>
-
-        <%= render_slot(@inner_block) %>
-      </div>
-    </div>
-    """
-  end
+  def poll_card(assigns)
 end

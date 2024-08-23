@@ -1,0 +1,10 @@
+<div {@rest}>
+  <div class="flex items-center justify-between">
+    <%= render_slot(@location) %>
+  </div>
+  <div class="mt-2">
+    <%= render_slot(@name) %>
+
+    <%= render_slot(@inner_block) %>
+  </div>
+</div>
