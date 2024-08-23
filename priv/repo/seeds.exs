@@ -7,7 +7,7 @@ random_day = fn ->
 end
 
 random_time = fn ->
-  Time.new(Enum.random(0..23), Enum.random([0, 15, 30, 45]), 0)
+  Time.new!(Enum.random(0..23), Enum.random([0, 15, 30, 45]), 0)
 end
 
 random_duration = fn ->
@@ -18,9 +18,9 @@ random_poll_option = fn ->
   from_time = random_time.()
 
   %{
-    date: random_day.(),
-    from_time: from_time,
-    to_time: Time.add(from_time, random_duration.())
+    "date" => random_day.(),
+    "from_time" => from_time,
+    "to_time" => Time.add(from_time, random_duration.())
   }
 end
 
@@ -122,7 +122,14 @@ polls = [
 
 polls
 |> Enum.each(fn poll_params ->
-  create_poll(
+  poll_params =
+    Map.put(poll_params, "poll_options", [
+      random_poll_option.(),
+      random_poll_option.(),
+      random_poll_option.()
+    ])
+
+  create_poll!(
     poll_params,
     actor: Enum.random([user1, user2])
   )

@@ -13,12 +13,19 @@ defmodule Muhurta.Events.Poll do
     ]
 
     read :read do
-      prepare build(sort: [inserted_at: :desc])
+      primary? true
+      prepare build(load: [poll_options: [votes: :user]], sort: [inserted_at: :desc])
     end
 
     create :create do
       accept [:name, :description, :location]
+      argument :poll_options, {:array, :map}
+
       change relate_actor(:creator)
+
+      change manage_relationship(:poll_options,
+               on_no_match: {:create, :create}
+             )
     end
   end
 
