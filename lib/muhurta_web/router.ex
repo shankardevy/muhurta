@@ -25,6 +25,7 @@ defmodule MuhurtaWeb.Router do
     pipe_through [:browser, :require_authentication]
 
     live "/polls", PollLive.Index
+    live "/polls/:id", PollLive.Show
     live "/me", ProfileLive.Show
 
     live "/performance/polls/assigns", PollLive.Assigns
