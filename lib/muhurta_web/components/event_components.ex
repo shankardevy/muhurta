@@ -1,6 +1,12 @@
 defmodule MuhurtaWeb.EventComponents do
   use Phoenix.Component
 
+  @doc """
+  Renders an Event Poll
+  """
+
+  attr :poll, :map, required: true
+
   def poll_card(assigns) do
     ~H"""
     <div class="px-8 py-4 bg-white rounded-lg shadow-md">
