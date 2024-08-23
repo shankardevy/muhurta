@@ -15,4 +15,19 @@ defmodule MuhurtaWeb.PollLive.Index do
 
     {:ok, assign(socket, polls: polls, current_user: user)}
   end
+
+  def handle_event("add_poll", _unsigned_params, socket) do
+    poll_params = %{
+      name: "New Poll Added by the button",
+      location: "Client's Office - Downtown",
+      description:
+        "Finding the best time to present our latest project deliverables to the client and gather their feedback."
+    }
+
+    Events.create_poll!(poll_params, actor: socket.assigns.current_user)
+
+    polls = Events.list_polls!()
+
+    {:noreply, socket |> assign(polls: polls) |> put_flash(:info, "New Event created.")}
+  end
 end
