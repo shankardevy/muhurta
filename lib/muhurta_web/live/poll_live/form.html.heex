@@ -11,43 +11,11 @@
 
     <div class="grid grid-cols-12 gap-x-12">
       <div class="col-span-4">
-        <div class="flex items-center text-center text-gray-900">
-          <button
-            type="button"
-            class="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-          >
-            <span class="sr-only">Previous month</span>
-            <.icon name="hero-chevron-left" />
-          </button>
-          <div class="flex-auto text-sm font-semibold">January</div>
-          <button
-            type="button"
-            class="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-          >
-            <span class="sr-only">Next month</span>
-            <.icon name="hero-chevron-right" />
-          </button>
-        </div>
-        <div class="mt-6 grid grid-cols-7 text-xs text-center leading-6 text-gray-500">
-          <div>M</div>
-          <div>T</div>
-          <div>W</div>
-          <div>T</div>
-          <div>F</div>
-          <div>S</div>
-          <div>S</div>
-        </div>
-        <%= for week <- @calendar do %>
-          <div class="isolate grid grid-cols-7 gap-px  bg-gray-200 text-sm shadow ring-1 ring-gray-200">
-            <.day
-              :for={date <- week}
-              today={@today}
-              id={"day-#{date}"}
-              path={@form[:poll_options].name}
-              cell={%{date: date}}
-            />
-          </div>
-        <% end %>
+        <Calendar.calendar
+          today={@today}
+          calendar_days={@streams.calendar_days}
+          path={@form[:poll_options].name}
+        />
       </div>
       <div class="col-span-8">
         <ul role="list" class="divide-y divide-gray-200">
