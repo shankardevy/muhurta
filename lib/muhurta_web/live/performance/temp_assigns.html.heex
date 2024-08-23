@@ -5,7 +5,7 @@
   <.button phx-click="add_poll">New Poll</.button>
 </div>
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-2 gap-4" phx-update="append" id="poll-list">
   <.poll_card :for={poll <- @polls} poll={poll} id={"poll-#{poll.id}"}>
     <:location>
       <span><%= poll.location %></span>

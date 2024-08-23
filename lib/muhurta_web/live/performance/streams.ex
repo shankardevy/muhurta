@@ -10,7 +10,9 @@ defmodule MuhurtaWeb.PollLive.Streams do
     polls = Events.list_polls!()
     user = Muhurta.Events.get_user!(user_id)
 
-    {:ok, assign(socket, polls: polls, current_user: user, pid: pid)}
+    socket = stream(socket, :polls, polls)
+
+    {:ok, assign(socket, current_user: user, pid: pid)}
   end
 
   def handle_event("add_poll", _unsigned_params, socket) do
@@ -21,10 +23,9 @@ defmodule MuhurtaWeb.PollLive.Streams do
         "Finding the best time to present our latest project deliverables to the client and gather their feedback."
     }
 
-    Events.create_poll!(poll_params, actor: socket.assigns.current_user)
+    poll = Events.create_poll!(poll_params, actor: socket.assigns.current_user)
 
-    polls = Events.list_polls!()
-
-    {:noreply, socket |> assign(polls: polls) |> put_flash(:info, "New Event created.")}
+    {:noreply,
+     socket |> stream_insert(:polls, poll, at: 0) |> put_flash(:info, "New Event created.")}
   end
 end

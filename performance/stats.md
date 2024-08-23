@@ -1,17 +1,16 @@
 # Memory Consumption
 
 ## Using regular assigns and comprehension for 1500+ records
-Active Memory 4.5 MB
-Hibernate Memory  1.3 MB
-After wakeup 2.8 MB
+Active Memory 7.4 MB
+Hibernate Memory  1.1 MB
+Updating Assigns 14.7 MB
 
 ## Using regular assigns and temporary assigns
-Active Memory 4.5 MB
-Hibernate Memory  4.6 KB
-After wakeup 16.8 KB
+Active Memory 7 MB
+Hibernate Memory  5 KB
+Updating Assigns 89 KB
 
 ## Using streams
-Active Memory 4.5 MB
+Active Memory 7.4 MB
 Hibernate Memory  5 KB
-After wakeup 16.8 KB
-
+Updating Assigns 68 KB
