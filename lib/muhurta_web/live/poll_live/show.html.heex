@@ -11,53 +11,40 @@
     </div>
     <!-- Votes for Each Suggested Time -->
     <div class="grid grid-cols-2 gap-4">
-      <div class="border rounded-lg p-4">
+      <div :for={poll_option <- @poll.poll_options} class="border rounded-lg p-4">
         <h3 class="text-gray-800">
-          August 25, 2024
+          <%= Calendar.strftime(poll_option.date, "%a - %d %B, %Y") %>
         </h3>
-        <p class="text-sm  border-b pb-1 mb-4">10:00 AM to 12:00 PM</p>
-        <div class="mt-2">
-          <h3 class="text-md text-green-600">Yes:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>John Doe</li>
-            <li>Jane Smith</li>
-          </ul>
-        </div>
-        <div class="mt-2">
-          <h3 class="text-md text-red-600">No:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>Mark Lee</li>
-          </ul>
-        </div>
+        <p class="text-sm  border-b pb-1 mb-4">
+          <%= Calendar.strftime(poll_option.from_time, "%I:%M %p") %> - <%= Calendar.strftime(
+            poll_option.to_time,
+            "%I:%M %p"
+          ) %>
+        </p>
+        <div :if={Enum.any?(poll_option.votes)}>
+          <div class="mt-2">
+            <h3 class="text-md text-green-600">Yes:</h3>
+            <ul class="list-disc ml-6 text-gray-700">
+              <li>John Doe</li>
+              <li>Jane Smith</li>
+            </ul>
+          </div>
+          <div class="mt-2">
+            <h3 class="text-md text-red-600">No:</h3>
+            <ul class="list-disc ml-6 text-gray-700">
+              <li>Mark Lee</li>
+            </ul>
+          </div>
 
-        <div class="mt-2">
-          <h3 class="text-md text-yellow-600">If need be:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>Sarah Connor</li>
-          </ul>
+          <div class="mt-2">
+            <h3 class="text-md text-yellow-600">If need be:</h3>
+            <ul class="list-disc ml-6 text-gray-700">
+              <li>Sarah Connor</li>
+            </ul>
+          </div>
         </div>
-      </div>
-
-      <div class="border rounded-lg p-4">
-        <h3 class="text-gray-800">August 26, 2024</h3>
-        <p class="text-sm border-b pb-1 mb-4">2:00 PM to 4:00 PM</p>
-        <div class="mt-2">
-          <h3 class="text-md text-green-600">Yes:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>John Doe</li>
-          </ul>
-        </div>
-        <div class="mt-2">
-          <h3 class="text-md text-red-600">No:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>Jane Smith</li>
-          </ul>
-        </div>
-        <div class="mt-2">
-          <h3 class="text-md text-yellow-600">If need be:</h3>
-          <ul class="list-disc ml-6 text-gray-700">
-            <li>Mark Lee</li>
-          </ul>
+        <div :if={!Enum.any?(poll_option.votes)}>
+          No votes so far.
         </div>
       </div>
     </div>
@@ -65,11 +52,16 @@
   <!-- Right Section: Voting for Suggested Times -->
   <div class="col-span-4 shadow-md rounded-lg p-6 space-y-6">
     <!-- Suggested Time 1 -->
-    <h2 class="text-gray-800">Suggested Time Slots</h2>
+    <h2 class="text-gray-800">Vote on Suggested Timeslots</h2>
 
-    <div class="p-4">
-      <h3 class="text-gray-800">August 25, 2024</h3>
-      <p class="text-sm text-gray-600">10:00 AM - 12:00 PM</p>
+    <div :for={poll_option <- @poll.poll_options} class="p-4">
+      <h3 class="text-gray-800"><%= Calendar.strftime(poll_option.date, "%a - %d %B, %Y") %></h3>
+      <p class="text-sm text-gray-600">
+        <%= Calendar.strftime(poll_option.from_time, "%I:%M %p") %> - <%= Calendar.strftime(
+          poll_option.to_time,
+          "%I:%M %p"
+        ) %>
+      </p>
       <!-- Radio Buttons -->
       <div class="mt-4 flex flex-col">
         <label class="block items-center">
@@ -95,47 +87,6 @@
           <span class="ml-2">If need be</span>
         </label>
       </div>
-    </div>
-
-    <hr />
-
-    <div class="p-4">
-      <h3 class="text-gray-800">August 25, 2024</h3>
-      <p class="text-sm text-gray-600">10:00 AM - 12:00 PM</p>
-      <!-- Radio Buttons -->
-      <div class="mt-4 flex flex-col">
-        <label class="block items-center">
-          <input
-            type="radio"
-            name="suggested_time_1"
-            value="yes"
-            class="form-radio text-blue-500"
-          />
-          <span class="ml-2">Yes</span>
-        </label>
-        <label class="block items-center">
-          <input type="radio" name="suggested_time_1" value="no" class="form-radio text-red-500" />
-          <span class="ml-2">No</span>
-        </label>
-        <label class="block items-center">
-          <input
-            type="radio"
-            name="suggested_time_1"
-            value="if_need_be"
-            class="form-radio text-yellow-500"
-          />
-          <span class="ml-2">If need be</span>
-        </label>
-      </div>
-    </div>
-    <div phx-update="stream" id="polls">
-      <ul>
-        <li :for={{id, poll} <- @streams.polls} id={id}>
-          <.link patch={~p"/polls/#{poll.id}"}>
-            <%= poll.name %>
-          </.link>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

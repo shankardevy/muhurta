@@ -14,7 +14,7 @@ defmodule Muhurta.Events.Poll do
 
     read :read do
       primary? true
-      prepare build(sort: [inserted_at: :desc])
+      prepare build(load: [poll_options: :votes], sort: [inserted_at: :desc])
     end
 
     create :create do
