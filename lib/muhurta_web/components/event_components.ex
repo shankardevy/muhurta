@@ -15,4 +15,12 @@ defmodule MuhurtaWeb.EventComponents do
   slot :location
 
   def poll_card(assigns)
+
+  @doc """
+  Renders an user profile card
+  """
+  attr :email, :string, required: true
+  slot :inner_block
+
+  def profile_card(assigns)
 end

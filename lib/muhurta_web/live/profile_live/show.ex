@@ -1,6 +1,7 @@
 defmodule MuhurtaWeb.ProfileLive.Show do
   use MuhurtaWeb, :live_view
 
+  import MuhurtaWeb.EventComponents
   alias Muhurta.Events
 
   def mount(_params, %{"user_id" => user_id}, socket) do
