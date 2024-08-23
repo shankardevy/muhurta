@@ -52,6 +52,7 @@ defmodule MuhurtaWeb.Router do
          {:ok, %{id: user_id, name: name}} <- Muhurta.Events.get_user_by_email(email) do
       conn
       |> put_session("user_id", user_id)
+      |> put_session("live_socket_id", "user-session-#{user_id}")
       |> put_flash(:info, "Logged in as #{name}")
       |> redirect(to: "/")
       |> halt()
@@ -128,6 +129,10 @@ defmodule MuhurtaWeb.Router do
   def logout(conn, _) do
     case Map.has_key?(conn.params, "logout") do
       true ->
+        if live_socket_id = get_session(conn, :live_socket_id) do
+          MuhurtaWeb.Endpoint.broadcast(live_socket_id, "disconnect", %{})
+        end
+
         conn
         |> configure_session(renew: true)
         |> clear_session()
